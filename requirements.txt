@@ -1,0 +1,14 @@
+fastapi
+pydantic
+uvicorn[standard]
+gunicorn
+alembic
+sqlalchemy==1.4.46
+psycopg2-binary
+python-dateutil
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
+python-dotenv
+pytest
+pytest-mock
