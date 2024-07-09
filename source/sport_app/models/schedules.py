@@ -4,7 +4,7 @@ from pydantic import (
     BaseModel,
     Field
 )
-from .programs import Program
+from source.tables import Program
 import datetime
 
 

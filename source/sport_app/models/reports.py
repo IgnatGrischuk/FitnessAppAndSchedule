@@ -1,8 +1,9 @@
+
 import datetime
 import enum
 
 from pydantic import BaseModel
-from . import Program
+from source.tables import Program
 
 
 class Periods(str, enum.Enum):

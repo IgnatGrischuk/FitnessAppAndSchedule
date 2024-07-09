@@ -9,12 +9,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
 from .constructor import constructor
-from .models import (
-    program_to_model,
-    record_to_model,
-    Roles
-)
-from .utils import *
+from sport_app.models import (program_to_model, record_to_model, Roles)
+from .utils import day_stub, calculate_date
 
 
 Base = declarative_base(constructor=constructor)
@@ -51,13 +47,19 @@ class Program(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    category = Column(String, ForeignKey("category.name", onupdate="CASCADE", ondelete="RESTRICT"))
-    placement = Column(String, ForeignKey("placement.name", onupdate="CASCADE", ondelete="RESTRICT"))
+    category = Column(String,
+                      ForeignKey(
+                          "category.name",
+                          onupdate="CASCADE", ondelete="RESTRICT"))
+    placement = Column(String,
+                       ForeignKey("placement.name",
+                                  onupdate="CASCADE", ondelete="RESTRICT"))
     instructor = Column(Integer, ForeignKey("instructor.id"))
     paid = Column(Boolean)
     place_limit = Column(Integer, nullable=True)
     registration_opens = Column(Integer, nullable=True)
-    available_registration = Column(Boolean, default=False, nullable=False)
+    available_registration = Column(Boolean,
+                                    default=False, nullable=False)
 
     category_obj = relationship("Category", back_populates="programs")
     instructor_obj = relationship("Instructor", back_populates="programs")
@@ -65,7 +67,8 @@ class Program(Base):
 
     to_model = program_to_model
 
-    def registration_opens_at(self, class_date: datetime.datetime) -> datetime.datetime:
+    def registration_opens_at(self, class_date: datetime.datetime) ->\
+            datetime.datetime:
         if not self.registration_opens:
             return day_stub()
         pre_days = rd.relativedelta(days=self.registration_opens, hour=16)
@@ -75,8 +78,12 @@ class Program(Base):
 schedule_schema_record = Table(
     "schedule_schema_record",
     Base.metadata,
-    Column("schedule_schema", ForeignKey("schedule_schema.id", ondelete="CASCADE"), primary_key=True),
-    Column("schema_record", ForeignKey("schema_record.id", ondelete="CASCADE"), primary_key=True),
+    Column("schedule_schema",
+           ForeignKey("schedule_schema.id", ondelete="CASCADE"),
+           primary_key=True),
+    Column("schema_record",
+           ForeignKey("schema_record.id", ondelete="CASCADE"),
+           primary_key=True),
 )
 
 
@@ -121,8 +128,12 @@ class BookedClasses(Base):
     __tablename__ = "booked_classes"
 
     id = Column(Integer, primary_key=True)
-    client = Column(Integer, ForeignKey("client.id", ondelete="CASCADE"), nullable=False)
-    program = Column(Integer, ForeignKey("program.id", ondelete="CASCADE"), nullable=False)
+    client = Column(Integer,
+                    ForeignKey("client.id",
+                               ondelete="CASCADE"), nullable=False)
+    program = Column(Integer,
+                     ForeignKey("program.id", ondelete="CASCADE"),
+                     nullable=False)
     date = Column(DateTime(timezone=True))
 
     __table_args__ = (

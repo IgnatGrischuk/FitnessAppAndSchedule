@@ -1,9 +1,10 @@
-from .programs import Category, Program, InstructorPublic
-from .schedules import SchemaRecord
-from .clients import BaseClient
+from .programs import *
+from .schedules import *
+from .clients import *
 from .auth import *
 from .reports import *
-from ..database import as_dict
+from source.database import as_dict
+from source.tables import Category
 
 
 def program_to_model(self) -> Program:
