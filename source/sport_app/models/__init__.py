@@ -4,7 +4,6 @@ from .clients import *
 from .auth import *
 from .reports import *
 from source.database import as_dict
-from source.tables import Category
 
 
 def program_to_model(self) -> Program:
