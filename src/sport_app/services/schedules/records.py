@@ -8,9 +8,9 @@ from sqlalchemy.orm import Session
 from sqlalchemy import delete
 
 from .schema import SchemaService
-from source.database import get_session
-from source.sport_app import models
-from source import tables
+from src.database import get_session
+from src.sport_app import models
+from src import tables
 
 
 class RecordService:

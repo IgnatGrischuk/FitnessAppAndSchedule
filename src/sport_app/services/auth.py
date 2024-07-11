@@ -11,10 +11,10 @@ from pydantic import ValidationError
 from sqlalchemy import delete
 from sqlalchemy.exc import IntegrityError
 
-from source.database import Session, get_session
-from source.settings import settings
-from source.sport_app import models
-from source import tables
+from src.database import Session, get_session
+from src.settings import settings
+from src.sport_app import models
+from src import tables
 
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='api/auth/sign-in/')

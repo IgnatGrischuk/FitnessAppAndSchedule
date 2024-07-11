@@ -1,4 +1,4 @@
-
+import datetime
 from sqlalchemy import (
     Column, String, Integer,
     ForeignKey, DateTime, Time, Boolean, JSON,
@@ -9,8 +9,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
 from .constructor import constructor
-from sport_app.models import (program_to_model, record_to_model, Roles)
-from .utils import day_stub, calculate_date
+from src.sport_app.models import (program_to_model, record_to_model, Roles)
+from src.utils import day_stub, calculate_date
 
 
 Base = declarative_base(constructor=constructor)

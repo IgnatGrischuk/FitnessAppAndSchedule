@@ -16,10 +16,10 @@ from . import (
     SchemaService,
     ProgramService
 )
-from source.database import get_session
-from source.sport_app import models
-from source import tables
-from source import utils
+from src.database import get_session
+from src.sport_app import models
+from src import tables
+from src import utils
 
 
 class ClientService:

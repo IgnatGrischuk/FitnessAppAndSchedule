@@ -2,12 +2,14 @@
 from fastapi import FastAPI
 from fastapi.routing import APIRoute
 from fastapi.middleware.cors import CORSMiddleware
-from source.sport_app import api
+# from . import api
 from .settings import settings
 
 
 from fastapi.responses import FileResponse
 from pathlib import Path
+
+from .sport_app import api
 
 
 def use_route_names_as_operation_ids(app: FastAPI) -> None:

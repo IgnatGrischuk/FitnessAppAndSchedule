@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     db_port: str = '5432'
     db_database: str = 'fitness_app'
 
-    adm_username: str = 'Ignat Grischuk'
+    adm_username: str = 'Ignat'
     adm_email: str = 'grischuk93@gmail.com'
     adm_password: str = '1234'
 

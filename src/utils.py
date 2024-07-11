@@ -1,43 +1,44 @@
 import datetime
 
 from dateutil import relativedelta as rd
+from dateutil.tz import gettz
 from dateutil.utils import today as _today
 from sqlalchemy import func, Integer, Time
 from sqlalchemy.sql.expression import BinaryExpression
 
 from .settings import settings
 
-timezone = get_time_zone(settings.timezone)
+tz = gettz(settings.timezone)
 
 
 def today() -> datetime.datetime:
-    return _today(timezone)
+    return _today(tz)
 
 
 def now() -> datetime.datetime:
-    return datetime.datetime.now(timezone)
+    return datetime.datetime.now(tz)
 
 
 def monday_on_week(year: int, week: int) -> datetime.datetime:
     """Возвращает понедельник недели под номером :week_num в году :year"""
-    D = datetime.datetime(year, 1, 1, tzinfo=timezone)
+    D = datetime.datetime(year, 1, 1, tzinfo=tz)
     return D + rd.relativedelta(weeks=int(week), weekday=rd.MO(-1))
 
 
 def sunday_on_week(year: int, week: int) -> datetime.datetime:
     """Возвращает воскресенье недели под номером :week_num в году :year"""
-    D = datetime.datetime(year, 1, 1, tzinfo=timezone)
+    D = datetime.datetime(year, 1, 1, tzinfo=tz)
     return D + rd.relativedelta(weeks=int(week), weekday=rd.SU(-1))
 
 
 def first_month_day(year: int, month: int) -> datetime.datetime:
     """Возвращает первый день месяца :month в году :year"""
-    return datetime.datetime(year, month, 1, tzinfo=timezone)
+    return datetime.datetime(year, month, 1, tzinfo=tz)
 
 
 def last_month_day(year: int, month: int) -> datetime.datetime:
     """Возвращает последний день месяца :month в году :year"""
-    D = datetime.datetime(year, month + 1, 1, tzinfo=timezone)
+    D = datetime.datetime(year, month + 1, 1, tzinfo=tz)
     return D - rd.relativedelta(days=1)
 
 
@@ -62,7 +63,7 @@ def calculate_date(week_day: int, day_time: datetime.time)\
 
 
 def day_stub() -> datetime.datetime:
-    return datetime.datetime(2000, 1, 1, tzinfo=timezone)
+    return datetime.datetime(2000, 1, 1, tzinfo=tz)
 
 
 def this_month_sql() -> BinaryExpression:

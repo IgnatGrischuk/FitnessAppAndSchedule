@@ -11,10 +11,10 @@ from sqlalchemy import delete
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
-from source.database import get_session
+from src.database import get_session
 
-from source.sport_app import models
-from source import tables
+from src.sport_app import models
+from src import tables
 
 
 class CategoryService:

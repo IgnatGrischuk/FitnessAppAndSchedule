@@ -3,7 +3,7 @@ from .schedules import *
 from .clients import *
 from .auth import *
 from .reports import *
-from source.database import as_dict
+from src.database import as_dict
 
 
 def program_to_model(self) -> Program:
